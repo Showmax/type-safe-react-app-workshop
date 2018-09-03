@@ -28,9 +28,6 @@ class App extends Component<{}> {
               <li>
                 <Link to="/">Home</Link>
               </li>
-              <li>
-                <Link to="/film">Detail</Link>
-              </li>
             </ul>
             <Route exact path="/" component={Home} />
             <Route path="/film/:id" component={Detail} />

@@ -1,53 +1,42 @@
 // @flow
 import React from 'react';
-
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
-
 import { Link } from 'react-router-dom';
-import type { HomeData } from './__generated__/HomeData';
 
+import Film, { HomePageFilmFragment } from './Film';
+import FilmsData from './FilmsData';
 
-class FilmsQuery extends Query<HomeData, {}> {};
 
 class Home extends React.Component<{}> {
   render() {
     return (
-      <FilmsQuery
-        query={gql`
-          query HomeData {
-            allFilms {
-              films {
-                id
-                title
-                episodeID
-              }
-            }
-          }
-        `}
-      >
-        {(queryResult) => {
-          const { loading, error, data } = queryResult;
+      <FilmsData>
+        {(result) => {
+          if (result.loading) return 'Loading Home';
 
-          if (loading) { return 'Loading Home'; }
-          if (error) { return 'Error' + error.message; }
-          if (!data || !data.allFilms || !data.allFilms.films) { return 'Unknown graphtql error'; }
+          if (result.failure) return 'Error happened!';
+
+          const films = result.films
+            .sort((film1, film2) => {
+              if (film1.episodeID == null || film2.episodeID == null) {
+                return 0;
+              }
+
+              return film1.episodeID - film2.episodeID;
+            });
 
           return (
             <ul>
-              {data.allFilms.films.filter(Boolean).map((film) => (
+              {films.map((film) => (
                 <li>
-                  <Link to={`/film/${film.id}`}>
-                    Episode {film.episodeID}
-                    <br />
-                    {film.title}
-                  </Link>
+                  <Film film={film}/>
                 </li>
               ))}
             </ul>
           );
         }}
-      </FilmsQuery>
+      </FilmsData>
     );
   }
 }

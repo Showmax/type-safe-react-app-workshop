@@ -5,25 +5,25 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: HomeData
+// GraphQL query operation: FilmsData
 // ====================================================
 
-export type HomeData_allFilms_films = {
+export type FilmsData_allFilms_films = {|
   /**
    * The ID of an object
    */
   id: string,
   /**
-   * The title of this film.
-   */
-  title: ?string,
-  /**
    * The episode number of this film.
    */
   episodeID: ?number,
-};
+  /**
+   * The title of this film.
+   */
+  title: ?string,
+|};
 
-export type HomeData_allFilms = {
+export type FilmsData_allFilms = {|
   /**
    * A list of all of the objects returned in the connection. This is a convenience
    * field provided for quickly exploring the API; rather than querying for
@@ -32,12 +32,12 @@ export type HomeData_allFilms = {
    * the edge to enable efficient pagination, this shortcut cannot be used, and the
    * full "{ edges { node } }" version should be used instead.
    */
-  films: ?Array<?HomeData_allFilms_films>
-};
+  films: ?Array<?FilmsData_allFilms_films>
+|};
 
-export type HomeData = {
-  allFilms: ?HomeData_allFilms
-};
+export type FilmsData = {|
+  allFilms: ?FilmsData_allFilms
+|};
 
 /* @flow */
 /* eslint-disable */
