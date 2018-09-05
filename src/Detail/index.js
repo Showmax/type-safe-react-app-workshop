@@ -2,8 +2,10 @@
 import React from 'react';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
-import FilmDetailData from './FilmDetailData';
 import type { Match } from 'react-router'
+
+import UserFavoritesData from '../UserFavoritesData';
+import FilmDetailData from './FilmDetailData';
 
 type Props = {
   match: Match,
@@ -17,40 +19,61 @@ class Detail extends React.Component<Props> {
       return <div>Not found!</div>
     }
 
+    const id = match.params.id;
+
     return (
-      <FilmDetailData id={match.params.id}>
-        {(filmDetailResult) => {
-          if (filmDetailResult.loading) { return 'Loading...'; }
+      <UserFavoritesData>
+        {
+          (userFavoritesResult) => {
+            const { addToFavorites, removeFromFavorites } = userFavoritesResult;
+            const favoriteFilms = userFavoritesResult.success
+              ? userFavoritesResult.favoriteFilms
+              : [];
+            const favorite = favoriteFilms.includes(id);
 
-          if (filmDetailResult.failure) {
-            return `Error: ${filmDetailResult.error}`;
+            return (
+              <FilmDetailData id={id}>
+                {(filmDetailResult) => {
+                  if (filmDetailResult.loading) { return 'Loading...'; }
+
+                  if (filmDetailResult.failure) {
+                    return `Error: ${filmDetailResult.error}`;
+                  }
+
+                  const { film } = filmDetailResult;
+
+                  return (
+                    <div>
+                      <h1>Episode {film.episodeID}: {film.title}</h1>
+
+                      {film.releaseDate && <div>
+                        Release date: {new Date(film.releaseDate).toLocaleDateString()}
+                      </div>}
+                      <div>
+                        Director: {film.director}
+                      </div>
+                      <div>
+                        Opening crawl: {film.openingCrawl}
+                      </div>
+                      {film.characterConnection && film.characterConnection.characters && <div>
+                        Characters: {film.characterConnection.characters.filter(Boolean).map((ch) => ch.name).join(', ')}
+                      </div>}
+                      {film.planetConnection && film.planetConnection.planets && <div>
+                        Planets: {film.planetConnection.planets.filter(Boolean).map((p) => p.name).join(', ')}
+                      </div>}
+                      <div>
+                        {favorite 
+                          ? <span onClick={() => removeFromFavorites(id)}>{'\u2605'}</span> 
+                          : <span onClick={() => addToFavorites(id)}>{'\u2606'}</span>}
+                      </div>
+                    </div>
+                  );
+                }}
+              </FilmDetailData>
+            );
           }
-
-          const { film } = filmDetailResult;
-
-          return (
-            <div>
-              <h1>Episode {film.episodeID}: {film.title}</h1>
-
-              {film.releaseDate && <div>
-                Release date: {new Date(film.releaseDate).toLocaleDateString()}
-              </div>}
-              <div>
-                Director: {film.director}
-              </div>
-              <div>
-                Opening crawl: {film.openingCrawl}
-              </div>
-              {film.characterConnection && film.characterConnection.characters && <div>
-                Characters: {film.characterConnection.characters.filter(Boolean).map((ch) => ch.name).join(', ')}
-              </div>}
-              {film.planetConnection && film.planetConnection.planets && <div>
-                Planets: {film.planetConnection.planets.filter(Boolean).map((p) => p.name).join(', ')}
-              </div>}
-            </div>
-          );
-        }}
-      </FilmDetailData>
+        }
+      </UserFavoritesData>
     );
   }
 }

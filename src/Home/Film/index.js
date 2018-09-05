@@ -1,5 +1,5 @@
 // @flow
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import gql from 'graphql-tag';
 import type { HomePageFilm } from './__generated__/HomePageFilm';
@@ -14,15 +14,22 @@ export const HomePageFilmFragment = gql`
 
 type Props = {
   film: HomePageFilm,
+  favorite?: boolean,
+  onAddToFavorites: (filmId: string) => mixed,
+  onRemoveFromFavorites: (filmId: string) => mixed,
 };
 
-const Film = ({ film }: Props) => {
+const Film = ({ film, favorite, onAddToFavorites, onRemoveFromFavorites }: Props) => {
   return (
-    <Link to={`/film/${film.id}`}>
-      Episode {film.episodeID}
+    <Fragment>
+      <Link to={`/film/${film.id}`}>
+        Episode {film.episodeID}
+      </Link>
       <br />
-      {film.title}
-    </Link>
+      {favorite 
+        ? <span onClick={() => onRemoveFromFavorites(film.id)}>{'\u2605'}</span> 
+        : <span onClick={() => onAddToFavorites(film.id)}>{'\u2606'}</span>}
+    </Fragment>
   );
 };
 
