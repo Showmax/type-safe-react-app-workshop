@@ -52,22 +52,22 @@ const removeFromFavoritesMutation = gql`
 
 type ResultLoading = {|
   loading: true,
-  addToFavorites: (filmId: string) => Promise<AddToFavoritesMutationType>,
-  removeFromFavorites: (filmId: string) => Promise<RemoveFromFavoritesMutationType>,
+  addToFavorites: (filmId: string) => Promise<mixed>,
+  removeFromFavorites: (filmId: string) => Promise<mixed>,
 |};
 
 type ResultFailure = {|
   failure: true,
   error: string,
-  addToFavorites: (filmId: string) => Promise<AddToFavoritesMutationType>,
-  removeFromFavorites: (filmId: string) => Promise<RemoveFromFavoritesMutationType>,
+  addToFavorites: (filmId: string) => Promise<mixed>,
+  removeFromFavorites: (filmId: string) => Promise<mixed>,
 |};
 
 type ResultSuccess = {|
   success: true,
   favoriteFilms: Array<string>,
-  addToFavorites: (filmId: string) => Promise<AddToFavoritesMutationType>,
-  removeFromFavorites: (filmId: string) => Promise<RemoveFromFavoritesMutationType>,
+  addToFavorites: (filmId: string) => Promise<mixed>,
+  removeFromFavorites: (filmId: string) => Promise<mixed>,
 |};
 
 

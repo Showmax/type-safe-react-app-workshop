@@ -9,7 +9,8 @@
 // ====================================================
 
 export type UserFavoritesData_favorites = {|
-  films: Array<string>
+  id: string,
+  films: Array<string>,
 |};
 
 export type UserFavoritesData = {|

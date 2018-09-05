@@ -9,7 +9,8 @@
 // ====================================================
 
 export type RemoveFromFavoritesMutation_removeFromFavorites = {|
-  films: Array<string>
+  id: string,
+  films: Array<string>,
 |};
 
 export type RemoveFromFavoritesMutation = {|
