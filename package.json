@@ -23,7 +23,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "flow": "flow status",
-    "graphql2flow": "apollo codegen:generate --target=flow --useFlowExactObjects",
+    "graphql2flow": "apollo codegen:generate --target=flow --useFlowExactObjects --useFlowReadOnlyTypes",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },

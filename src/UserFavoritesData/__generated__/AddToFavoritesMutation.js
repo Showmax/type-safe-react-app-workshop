@@ -9,17 +9,17 @@
 // ====================================================
 
 export type AddToFavoritesMutation_addToFavorites = {|
-  id: string,
-  films: Array<string>,
+  +id: string,
+  +films: $ReadOnlyArray<string>,
 |};
 
 export type AddToFavoritesMutation = {|
-  addToFavorites: ?AddToFavoritesMutation_addToFavorites
+  +addToFavorites: ?AddToFavoritesMutation_addToFavorites
 |};
 
 export type AddToFavoritesMutationVariables = {|
-  userId: string,
-  filmId: string,
+  +userId: string,
+  +filmId: string,
 |};
 
 /* @flow */

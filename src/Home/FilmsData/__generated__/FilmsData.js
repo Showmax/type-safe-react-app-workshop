@@ -12,15 +12,15 @@ export type FilmsData_allFilms_films = {|
   /**
    * The ID of an object
    */
-  id: string,
+  +id: string,
   /**
    * The episode number of this film.
    */
-  episodeID: ?number,
+  +episodeID: ?number,
   /**
    * The title of this film.
    */
-  title: ?string,
+  +title: ?string,
 |};
 
 export type FilmsData_allFilms = {|
@@ -32,11 +32,11 @@ export type FilmsData_allFilms = {|
    * the edge to enable efficient pagination, this shortcut cannot be used, and the
    * full "{ edges { node } }" version should be used instead.
    */
-  films: ?Array<?FilmsData_allFilms_films>
+  +films: ?$ReadOnlyArray<?FilmsData_allFilms_films>
 |};
 
 export type FilmsData = {|
-  allFilms: ?FilmsData_allFilms
+  +allFilms: ?FilmsData_allFilms
 |};
 
 /* @flow */

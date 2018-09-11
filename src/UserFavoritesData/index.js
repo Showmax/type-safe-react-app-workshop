@@ -5,15 +5,15 @@ import Cookie from 'js-cookie';
 import uuid from 'uuid/v4';
 import gql from 'graphql-tag';
 import { Query, Mutation } from 'react-apollo';
-import type { 
+import type {
   UserFavoritesData as UserFavoritesDataType,
   UserFavoritesDataVariables
  } from './__generated__/UserFavoritesData';
-import type { 
+import type {
   AddToFavoritesMutation as AddToFavoritesMutationType,
   AddToFavoritesMutationVariables
  } from './__generated__/AddToFavoritesMutation';
-import type { 
+import type {
   RemoveFromFavoritesMutation as RemoveFromFavoritesMutationType,
   RemoveFromFavoritesMutationVariables
  } from './__generated__/RemoveFromFavoritesMutation';
@@ -65,7 +65,7 @@ type ResultFailure = {|
 
 type ResultSuccess = {|
   success: true,
-  favoriteFilms: Array<string>,
+  favoriteFilms: $ReadOnlyArray<string>,
   addToFavorites: (filmId: string) => Promise<mixed>,
   removeFromFavorites: (filmId: string) => Promise<mixed>,
 |};
@@ -122,7 +122,7 @@ class UserFavoritesData extends Component<Props, State> {
                     return children({ failure: true, error: 'Unexpected query result', addToFavorites, removeFromFavorites })
                   }
 
-                  return children({ success: true, favoriteFilms: data.favorites.films, addToFavorites, removeFromFavorites})          
+                  return children({ success: true, favoriteFilms: data.favorites.films, addToFavorites, removeFromFavorites})
                 }}
               </UserFavoritesQuery>
             )}

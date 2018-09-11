@@ -9,16 +9,16 @@
 // ====================================================
 
 export type UserFavoritesData_favorites = {|
-  id: string,
-  films: Array<string>,
+  +id: string,
+  +films: $ReadOnlyArray<string>,
 |};
 
 export type UserFavoritesData = {|
-  favorites: ?UserFavoritesData_favorites
+  +favorites: ?UserFavoritesData_favorites
 |};
 
 export type UserFavoritesDataVariables = {|
-  userId: string
+  +userId: string
 |};
 
 /* @flow */

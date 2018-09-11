@@ -12,15 +12,15 @@ export type HomePageFilm = {|
   /**
    * The ID of an object
    */
-  id: string,
+  +id: string,
   /**
    * The episode number of this film.
    */
-  episodeID: ?number,
+  +episodeID: ?number,
   /**
    * The title of this film.
    */
-  title: ?string,
+  +title: ?string,
 |};
 
 /* @flow */

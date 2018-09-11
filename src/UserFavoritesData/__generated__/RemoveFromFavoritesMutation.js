@@ -9,17 +9,17 @@
 // ====================================================
 
 export type RemoveFromFavoritesMutation_removeFromFavorites = {|
-  id: string,
-  films: Array<string>,
+  +id: string,
+  +films: $ReadOnlyArray<string>,
 |};
 
 export type RemoveFromFavoritesMutation = {|
-  removeFromFavorites: ?RemoveFromFavoritesMutation_removeFromFavorites
+  +removeFromFavorites: ?RemoveFromFavoritesMutation_removeFromFavorites
 |};
 
 export type RemoveFromFavoritesMutationVariables = {|
-  userId: string,
-  filmId: string,
+  +userId: string,
+  +filmId: string,
 |};
 
 /* @flow */
