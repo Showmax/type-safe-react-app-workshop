@@ -39,6 +39,7 @@ export const HomePageFilmFragment = gql`
 `;
 
 type Props = {
+  classes: { [string]: string },
   film: HomePageFilm,
   favorite?: boolean,
   onAddToFavorites: (filmId: string) => mixed,
@@ -51,7 +52,9 @@ const Film = ({ film, favorite, onAddToFavorites, onRemoveFromFavorites, classes
       <Link to={`/film/${film.id}`} className={classes.link}>
         <div
           className={classes.poster}
-          style={{ backgroundImage: `url(${Images['e' + film.episodeID]})` }}
+          style={{
+            backgroundImage: film.episodeID && `url(${Images['e' + film.episodeID]})`,
+          }}
         >
         </div>
         <div className={classes.episodeNumber}>Episode {ArabicToRomanNumber[film.episodeID]}</div>

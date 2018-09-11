@@ -2,11 +2,10 @@
 import React from 'react';
 import type { Node } from 'react';
 import { Query } from 'react-apollo';
-import type { ApolloError } from 'react-apollo';
 import gql from 'graphql-tag';
 
 import { HomePageFilmFragment } from '../Film';
-import type { 
+import type {
   FilmsData as FilmsDataType,
   FilmsData_allFilms_films as Film,
  } from './__generated__/FilmsData';
@@ -58,7 +57,7 @@ const FilmsData = (props: Props) => (
       }
 
       // filter out possible "null" films
-      const films = data.allFilms.films.filter(Boolean)
+      const films = data.allFilms.films.filter(Boolean);
 
       return props.children({ success: true, films });
     }}

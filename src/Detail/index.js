@@ -1,7 +1,5 @@
 // @flow
 import React from 'react';
-import { Query } from 'react-apollo';
-import gql from 'graphql-tag';
 import type { Match } from 'react-router'
 import injectSheet from 'react-jss';
 import classNames from 'classnames';
@@ -17,9 +15,10 @@ import styles from './styles';
 
 type Props = {
   match: Match,
+  classes: {[string]: string}
 };
- 
-const Detail = ({ match, classes }) => {
+
+const Detail = ({ match, classes }: Props) => {
   if (!match.params || !match.params.id) {
     return <div>Not found!</div>
   }
@@ -63,7 +62,7 @@ const Detail = ({ match, classes }) => {
                             : addToFavorites(id)}
                         >
                           <span className={classes.favoriteStar}>{'\u2605'}</span>
-                          {favorite 
+                          {favorite
                             ? 'Remove from favorites'
                             : 'Add to favorites'}
                         </div>

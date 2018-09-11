@@ -1,11 +1,8 @@
 // @flow
 import React from 'react';
-import { Query } from 'react-apollo';
-import gql from 'graphql-tag';
-import { Link } from 'react-router-dom';
 import injectSheet from 'react-jss';
 
-import Film, { HomePageFilmFragment } from './Film';
+import Film from './Film';
 import FilmsData from './FilmsData';
 
 import styles from './styles';

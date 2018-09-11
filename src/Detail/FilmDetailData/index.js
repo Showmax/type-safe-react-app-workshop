@@ -2,10 +2,9 @@
 import React from 'react';
 import type { Node } from 'react';
 import { Query } from 'react-apollo';
-import type { ApolloError } from 'react-apollo';
 import gql from 'graphql-tag';
 
-import type { 
+import type {
   FilmDetailData as FilmDetailDataType,
   FilmDetailDataVariables,
   FilmDetailData_film as Film,

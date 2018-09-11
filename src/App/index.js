@@ -1,5 +1,5 @@
 // @flow
-import React, { Component } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 import injectSheet from 'react-jss';
@@ -29,7 +29,7 @@ const App = ({ classes }) => (
         <div className={classes.gradient} />
         <div className={classes.content}>
           <Link to="/" className={classes.logoLink}>
-            <img src={logo} className={classes.logo} />
+            <img src={logo} className={classes.logo} alt="logo" />
           </Link>
 
           <Route exact path="/" component={Home} />
