@@ -4,55 +4,50 @@ import injectSheet from 'react-jss';
 
 import Film from './Film';
 import FilmsData from './FilmsData';
-
-import styles from './styles';
-
 import UserFavoritesData from '../UserFavoritesData';
+import styles from './styles';
 
 
 const Home = ({ classes }) => (
   <UserFavoritesData>
-    {
-      (userFavoritesResult) => {
-        const { addToFavorites, removeFromFavorites } = userFavoritesResult;
-        const favoriteFilms = userFavoritesResult.success
-          ? userFavoritesResult.favoriteFilms
-          : [];
+    {(userFavoritesResult) => {
+      const { addToFavorites, removeFromFavorites } = userFavoritesResult;
+      const favoriteFilms = userFavoritesResult.success ? userFavoritesResult.favoriteFilms : [];
 
-        return (
-          <FilmsData>
-            {(result) => {
-              if (result.loading) return 'Loading Home';
+      return (
+        <FilmsData>
+          {(result) => {
+            if (result.loading) return 'Loading Home';
 
-              if (result.failure) return 'Error happened!';
+            if (result.failure) return 'Error happened!';
 
-              const films = result.films
-                .sort((film1, film2) => {
-                  if (film1.episodeID == null || film2.episodeID == null) {
-                    return 0;
-                  }
+            const films = result.films
+              .sort((film1, film2) => {
+                if (film1.episodeID == null || film2.episodeID == null) {
+                  return 0;
+                }
 
-                  return film1.episodeID - film2.episodeID;
-                });
+                return film1.episodeID - film2.episodeID;
+              });
 
-              return (
-                <ul className={classes.list}>
-                  {films.map((film) => (
-                    <li className={classes.item}>
-                      <Film
-                        film={film}
-                        favorite={favoriteFilms.includes(film.id)}
-                        onAddToFavorites={addToFavorites}
-                        onRemoveFromFavorites={removeFromFavorites}
-                      />
-                    </li>
-                  ))}
-                </ul>
-              );
-            }}
-          </FilmsData>
-        );
-      }
+            return (
+              <ul className={classes.list}>
+                {films.map((film) => (
+                  <li className={classes.item}>
+                    <Film
+                      film={film}
+                      favorite={favoriteFilms.includes(film.id)}
+                      onAddToFavorites={addToFavorites}
+                      onRemoveFromFavorites={removeFromFavorites}
+                    />
+                  </li>
+                ))}
+              </ul>
+            );
+          }}
+        </FilmsData>
+      );
+    }
     }
   </UserFavoritesData>
 );

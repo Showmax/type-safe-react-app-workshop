@@ -6,10 +6,8 @@ import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
 import { ArabicToRomanNumber } from '../utils';
-
 import UserFavoritesData from '../UserFavoritesData';
 import FilmDetailData from './FilmDetailData';
-
 import styles from './styles';
 
 

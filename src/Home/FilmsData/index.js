@@ -11,7 +11,7 @@ import type {
  } from './__generated__/FilmsData';
 
 
-class FilmsQuery extends Query<FilmsDataType, {}> {};
+class FilmsQuery extends Query<FilmsDataType, {}> {}
 
 const filmsDataQuery = gql`
   query FilmsData {

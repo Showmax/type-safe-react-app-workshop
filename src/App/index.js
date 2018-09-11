@@ -1,18 +1,14 @@
 // @flow
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-
 import injectSheet from 'react-jss';
-
 import ApolloClient from 'apollo-client';
 import { HttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory'
-
 import { ApolloProvider } from 'react-apollo';
 
 import Home from '../Home';
 import Detail from '../Detail';
-
 import logo from './logo.svg';
 import styles from './styles';
 
