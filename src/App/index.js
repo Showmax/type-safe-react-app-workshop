@@ -18,7 +18,11 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-const App = ({ classes }) => (
+type Props = {
+  classes: { [string]: string },
+};
+
+const App = ({ classes }: Props) => (
   <ApolloProvider client={client}>
     <Router>
       <div className={classes.container}>

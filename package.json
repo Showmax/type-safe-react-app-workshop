@@ -23,6 +23,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "flow": "flow status",
+    "flow:coverage": "flow-coverage-report --config .flow-coverage.config.json",
     "graphql2flow": "apollo codegen:generate --target=flow --useFlowExactObjects --useFlowReadOnlyTypes",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
@@ -35,6 +36,7 @@
     }
   },
   "devDependencies": {
-    "apollo": "^1.7.1"
+    "apollo": "^1.7.1",
+    "flow-coverage-report": "^0.6.0"
   }
 }

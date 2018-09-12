@@ -1,3 +1,4 @@
+// @flow
 const YELLOW = '#ffe81e';
 
 const Button = {

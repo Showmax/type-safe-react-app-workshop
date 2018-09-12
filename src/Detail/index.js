@@ -44,11 +44,13 @@ const Detail = ({ match, classes }: Props) => {
 
                 const { film } = filmDetailResult;
 
+                const episodeNumberRoman = film.episodeID != null ? ArabicToRomanNumber[film.episodeID] : 'UNKNOWN';
+
                 return (
                   <div className={classes.container}>
                     <div className={classes.row}>
                       <div className={`${classes.col} ${classes.heading}`}>
-                        <h1 className={classes.episodeNumber}>Episode {ArabicToRomanNumber[film.episodeID]}</h1>
+                        <h1 className={classes.episodeNumber}>Episode {episodeNumberRoman}</h1>
                         <h2 className={classes.title}>{film.title}</h2>
                       </div>
                       <div className={`${classes.col} ${classes.actions}`}>

@@ -44,6 +44,8 @@ type Props = {
 };
 
 const Film = ({ film, favorite, onAddToFavorites, onRemoveFromFavorites, classes }: Props) => {
+  const episodeNumberRoman = film.episodeID != null ? ArabicToRomanNumber[film.episodeID] : 'UNKNOWN';
+
   return (
     <Fragment>
       <Link to={`/film/${film.id}`} className={classes.link}>
@@ -54,7 +56,7 @@ const Film = ({ film, favorite, onAddToFavorites, onRemoveFromFavorites, classes
           }}
         >
         </div>
-        <div className={classes.episodeNumber}>Episode {ArabicToRomanNumber[film.episodeID]}</div>
+        <div className={classes.episodeNumber}>Episode {episodeNumberRoman}</div>
         <div className={classes.title}>{film.title}</div>
       </Link>
       <div
