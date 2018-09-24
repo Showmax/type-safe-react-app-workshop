@@ -1,14 +1,14 @@
 // @flow
 import React from 'react';
-import injectSheet from 'react-jss';
 
 import Film from './Film';
 import FilmsData from './FilmsData';
 import UserFavoritesData from '../UserFavoritesData';
-import styles from './styles';
+import FilmsList from './FilmsList';
+import FilmsListItem from './FilmsListItem';
 
 
-const Home = ({ classes }) => (
+const Home = () => (
   <UserFavoritesData>
     {(userFavoritesResult) => {
       const { addToFavorites, removeFromFavorites } = userFavoritesResult;
@@ -31,18 +31,18 @@ const Home = ({ classes }) => (
               });
 
             return (
-              <ul className={classes.list}>
+              <FilmsList>
                 {films.map((film) => (
-                  <li className={classes.item}>
+                  <FilmsListItem>
                     <Film
                       film={film}
                       favorite={favoriteFilms.includes(film.id)}
                       onAddToFavorites={addToFavorites}
                       onRemoveFromFavorites={removeFromFavorites}
                     />
-                  </li>
+                  </FilmsListItem>
                 ))}
-              </ul>
+              </FilmsList>
             );
           }}
         </FilmsData>
@@ -53,4 +53,4 @@ const Home = ({ classes }) => (
 );
 
 
-export default injectSheet(styles)(Home);
+export default Home;

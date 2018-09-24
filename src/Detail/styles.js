@@ -17,7 +17,7 @@ const Button = {
     background: '#fff',
     color: '#505050',
   },
-}
+};
 
 export default {
   row: {

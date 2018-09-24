@@ -28,9 +28,7 @@ const Detail = ({ match, classes }: Props) => {
       {
         (userFavoritesResult) => {
           const { addToFavorites, removeFromFavorites } = userFavoritesResult;
-          const favoriteFilms = userFavoritesResult.success
-            ? userFavoritesResult.favoriteFilms
-            : [];
+          const favoriteFilms = userFavoritesResult.success ? userFavoritesResult.favoriteFilms : [];
           const favorite = favoriteFilms.includes(id);
 
           return (
@@ -43,7 +41,6 @@ const Detail = ({ match, classes }: Props) => {
                 }
 
                 const { film } = filmDetailResult;
-
                 const episodeNumberRoman = film.episodeID != null ? ArabicToRomanNumber[film.episodeID] : 'UNKNOWN';
 
                 return (
