@@ -21,6 +21,7 @@ const filmDetailDataQuery = gql`
       releaseDate
       director
       openingCrawl
+      poster
       characterConnection {
         characters {
           name

@@ -31,6 +31,7 @@ export const HomePageFilmFragment = gql`
     id
     episodeID
     title
+    poster
   }
 `;
 
@@ -49,7 +50,7 @@ const Film = ({ film, favorite, onAddToFavorites, onRemoveFromFavorites }: Props
     <Fragment>
       <Link to={`/film/${film.id}`} style={{ textDecoration: 'none' }}>
         <FilmPoster
-          imageUrl={film.episodeID ? Images['e' + film.episodeID] : null}
+          imageUrl={film.poster ? `http://localhost:8080${film.poster}` : ''}
           title={`Episode ${episodeNumberRoman}`}
           subtitle={posterSubtitle}
         />

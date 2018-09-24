@@ -101,4 +101,21 @@ export default {
     fontWeight: 700,
     color: YELLOW,
   },
+  poster: {
+    width: '166px',
+    height: '250px',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center center',
+    background: '#1a1a1a',
+    borderRadius: '4px',
+    margin: '0 0 0 15px',
+    padding: 0,
+    flexShrink: 0,
+    overflow: 'hidden',
+
+    '@media (max-width: 800px)': {
+      margin: 0,
+    },
+  },
 };

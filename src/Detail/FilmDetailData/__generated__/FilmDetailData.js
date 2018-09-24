@@ -67,6 +67,7 @@ export type FilmDetailData_film = {|
    * The opening paragraphs at the beginning of this film.
    */
   +openingCrawl: ?string,
+  +poster: ?string,
   +characterConnection: ?FilmDetailData_film_characterConnection,
   +planetConnection: ?FilmDetailData_film_planetConnection,
 |};

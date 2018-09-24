@@ -23,6 +23,7 @@ const styles = {
   image: {
     width: '166px',
     height: '250px',
+    backgroundColor: '#1a1a1a',
     backgroundSize: 'cover',
     backgroundPosition: 'center center',
     marginBottom: '15px',

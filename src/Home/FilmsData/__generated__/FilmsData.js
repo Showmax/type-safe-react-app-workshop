@@ -21,6 +21,7 @@ export type FilmsData_allFilms_films = {|
    * The title of this film.
    */
   +title: ?string,
+  +poster: ?string,
 |};
 
 export type FilmsData_allFilms = {|

@@ -21,6 +21,7 @@ export type HomePageFilm = {|
    * The title of this film.
    */
   +title: ?string,
+  +poster: ?string,
 |};
 
 /* @flow */

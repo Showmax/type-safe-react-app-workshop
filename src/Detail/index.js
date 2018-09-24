@@ -46,6 +46,7 @@ const Detail = ({ match, classes }: Props) => {
                 return (
                   <div className={classes.container}>
                     <div className={classes.row}>
+                      <div className={classes.poster} style={{ backgroundImage: film.poster ? `url(http://localhost:8080${film.poster})`: '' }} />
                       <div className={`${classes.col} ${classes.heading}`}>
                         <h1 className={classes.episodeNumber}>Episode {episodeNumberRoman}</h1>
                         <h2 className={classes.title}>{film.title}</h2>
