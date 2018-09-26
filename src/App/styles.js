@@ -16,7 +16,7 @@ export default {
     color: '#fff',
     padding: '60px 0',
     margin: '0 auto',
-    width: '1000px',
+    width: '980px',
 
     '@media (max-width: 1060px)': {
       width: 'auto',

@@ -33,7 +33,7 @@ const Home = () => (
             return (
               <FilmsList>
                 {films.map((film) => (
-                  <FilmsListItem>
+                  <FilmsListItem key={film.id}>
                     <Film
                       film={film}
                       favorite={favoriteFilms.includes(film.id)}

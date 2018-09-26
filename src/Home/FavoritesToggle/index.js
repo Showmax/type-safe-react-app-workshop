@@ -3,8 +3,8 @@ import React from 'react';
 import injectSheet from 'react-jss';
 import classNames from 'classnames';
 
+import { YELLOW } from '../../styleConstants';
 
-const YELLOW = '#ffe81e';
 
 const styles = {
   favorite: {
