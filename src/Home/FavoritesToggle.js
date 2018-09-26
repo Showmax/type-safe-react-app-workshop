@@ -3,7 +3,7 @@ import React from 'react';
 import injectSheet from 'react-jss';
 import classNames from 'classnames';
 
-import { YELLOW } from '../../styleConstants';
+import { YELLOW } from '../styleConstants';
 
 
 const styles = {

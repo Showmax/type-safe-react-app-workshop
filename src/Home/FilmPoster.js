@@ -1,8 +1,8 @@
 // @flow
 import React from 'react';
 import injectSheet from 'react-jss';
+import { YELLOW } from '../styleConstants';
 
-const YELLOW = '#ffe81e';
 
 const styles = {
   poster: {
