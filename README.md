@@ -11,8 +11,9 @@ npm start
 
 Steps:
 1. Create react app
-2. Add flow typing
-3. Add react-router
+2. Add react-router
+3. Add flow typing
 4. Add apollo client
 5. Add flow-typed for apollo client
 6. Add apollo code gen
+6. Add flow-coverage
