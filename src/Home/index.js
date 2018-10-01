@@ -1,52 +1,12 @@
-// @flow
 import React from 'react';
-
-import Film from './Film';
-import FilmsData from './FilmsData';
-import UserFavoritesData from '../UserFavoritesData';
-import FilmsList from './FilmsList';
-import FilmsListItem from './FilmsListItem';
+import { Link } from 'react-router-dom';
 
 
 const Home = () => (
-  <UserFavoritesData>
-    {(userFavoritesResult) => (
-      <FilmsData>
-        {(result) => {
-          if (result.loading) return 'Loading Home';
-
-          if (result.failure) return `Error happened! ${result.error}`;
-
-          const { addToFavorites, removeFromFavorites } = userFavoritesResult;
-          const favoriteFilms = userFavoritesResult.success ? userFavoritesResult.favoriteFilms : [];
-
-          const films = result.films
-            .sort((film1, film2) => {
-              if (film1.episodeID == null || film2.episodeID == null) {
-                return 0;
-              }
-
-              return film1.episodeID - film2.episodeID;
-            });
-
-          return (
-            <FilmsList>
-              {films.map((film) => (
-                <FilmsListItem key={film.id}>
-                  <Film
-                    film={film}
-                    favorite={favoriteFilms.includes(film.id)}
-                    onAddToFavorites={addToFavorites}
-                    onRemoveFromFavorites={removeFromFavorites}
-                  />
-                </FilmsListItem>
-              ))}
-            </FilmsList>
-          );
-        }}
-      </FilmsData>
-    )}
-  </UserFavoritesData>
+  <div>
+    <div>Home</div>
+    <Link to="/film/fake-id">Link to Detail Page</Link>
+  </div>
 );
 
 

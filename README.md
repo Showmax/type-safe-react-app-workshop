@@ -8,11 +8,3 @@ We are going to build a React application that has extensive type-checking start
 npm install
 npm start
 ```
-
-Steps:
-1. Create react app
-2. Add flow typing
-3. Add react-router
-4. Add apollo client
-5. Add flow-typed for apollo client
-6. Add apollo code gen
