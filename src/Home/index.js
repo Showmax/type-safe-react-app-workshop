@@ -10,45 +10,42 @@ import FilmsListItem from './FilmsListItem';
 
 const Home = () => (
   <UserFavoritesData>
-    {(userFavoritesResult) => {
-      const { addToFavorites, removeFromFavorites } = userFavoritesResult;
-      const favoriteFilms = userFavoritesResult.success ? userFavoritesResult.favoriteFilms : [];
+    {(userFavoritesResult) => (
+      <FilmsData>
+        {(result) => {
+          if (result.loading) return 'Loading Home';
 
-      return (
-        <FilmsData>
-          {(result) => {
-            if (result.loading) return 'Loading Home';
+          if (result.failure) return `Error happened! ${result.error}`;
 
-            if (result.failure) return `Error happened! ${result.error}`;
+          const { addToFavorites, removeFromFavorites } = userFavoritesResult;
+          const favoriteFilms = userFavoritesResult.success ? userFavoritesResult.favoriteFilms : [];
 
-            const films = result.films
-              .sort((film1, film2) => {
-                if (film1.episodeID == null || film2.episodeID == null) {
-                  return 0;
-                }
+          const films = result.films
+            .sort((film1, film2) => {
+              if (film1.episodeID == null || film2.episodeID == null) {
+                return 0;
+              }
 
-                return film1.episodeID - film2.episodeID;
-              });
+              return film1.episodeID - film2.episodeID;
+            });
 
-            return (
-              <FilmsList>
-                {films.map((film) => (
-                  <FilmsListItem key={film.id}>
-                    <Film
-                      film={film}
-                      favorite={favoriteFilms.includes(film.id)}
-                      onAddToFavorites={addToFavorites}
-                      onRemoveFromFavorites={removeFromFavorites}
-                    />
-                  </FilmsListItem>
-                ))}
-              </FilmsList>
-            );
-          }}
-        </FilmsData>
-      );
-    }
-    }
+          return (
+            <FilmsList>
+              {films.map((film) => (
+                <FilmsListItem key={film.id}>
+                  <Film
+                    film={film}
+                    favorite={favoriteFilms.includes(film.id)}
+                    onAddToFavorites={addToFavorites}
+                    onRemoveFromFavorites={removeFromFavorites}
+                  />
+                </FilmsListItem>
+              ))}
+            </FilmsList>
+          );
+        }}
+      </FilmsData>
+    )}
   </UserFavoritesData>
 );
 
