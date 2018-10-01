@@ -1,3 +1,4 @@
+// @flow
 import React from 'react';
 import injectSheet from 'react-jss';
 
@@ -16,7 +17,11 @@ const styles = {
   },
 };
 
-const Divider = ({ classes }) => (
+type Props = {
+  classes: { [string]: string },
+};
+
+const Divider = ({ classes }: Props) => (
   <div className={classes.divider} />
 );
 
