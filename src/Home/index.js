@@ -19,7 +19,7 @@ const Home = () => (
           {(result) => {
             if (result.loading) return 'Loading Home';
 
-            if (result.failure) return 'Error happened!';
+            if (result.failure) return `Error happened! ${result.error}`;
 
             const films = result.films
               .sort((film1, film2) => {

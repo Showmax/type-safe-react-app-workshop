@@ -29,94 +29,92 @@ const Detail = ({ match }: Props) => {
 
   return (
     <UserFavoritesData>
-      {
-        (userFavoritesResult) => {
-          const { addToFavorites, removeFromFavorites } = userFavoritesResult;
-          const favoriteFilms = userFavoritesResult.success ? userFavoritesResult.favoriteFilms : [];
-          const favorite = favoriteFilms.includes(id);
+      {(userFavoritesResult) => {
+        const { addToFavorites, removeFromFavorites } = userFavoritesResult;
+        const favoriteFilms = userFavoritesResult.success ? userFavoritesResult.favoriteFilms : [];
+        const favorite = favoriteFilms.includes(id);
 
-          return (
-            <FilmDetailData id={id}>
-              {(filmDetailResult) => {
-                if (filmDetailResult.loading) { return 'Loading...'; }
+        return (
+          <FilmDetailData id={id}>
+            {(filmDetailResult) => {
+              if (filmDetailResult.loading) { return 'Loading...'; }
 
-                if (filmDetailResult.failure) {
-                  return `Error: ${filmDetailResult.error}`;
-                }
+              if (filmDetailResult.failure) {
+                return `Error: ${filmDetailResult.error}`;
+              }
 
-                const { film } = filmDetailResult;
-                const episodeNumberRoman = film.episodeID != null ? ArabicToRomanNumber[film.episodeID] : 'UNKNOWN';
+              const { film } = filmDetailResult;
+              const episodeNumberRoman = film.episodeID != null ? ArabicToRomanNumber[film.episodeID] : 'UNKNOWN';
 
-                return (
-                  <div>
-                    <Row>
-                      <Poster url={film.poster} />
-                      <Column>
-                        <Heading
-                          title={film.title || ''}
-                          episodeNumber={episodeNumberRoman}
+              return (
+                <div>
+                  <Row>
+                    <Poster url={film.poster} />
+                    <Column>
+                      <Heading
+                        title={film.title || ''}
+                        episodeNumber={episodeNumberRoman}
+                      />
+                    </Column>
+                    <Column>
+                      <Actions>
+                        <FavoritesToggle
+                          toggleState={favorite ? 'active' : 'inactive'}
+                          onActivate={() => addToFavorites(id)}
+                          onDeactivate={() => removeFromFavorites(id)}
                         />
-                      </Column>
-                      <Column>
-                        <Actions>
-                          <FavoritesToggle
-                            toggleState={favorite ? 'active' : 'inactive'}
-                            onActivate={() => addToFavorites(id)}
-                            onDeactivate={() => removeFromFavorites(id)}
-                          />
-                          <BackButton />
-                        </Actions>
-                      </Column>
-                    </Row>
+                        <BackButton />
+                      </Actions>
+                    </Column>
+                  </Row>
 
-                    <Divider />
+                  <Divider />
 
-                    <Row>
-                      <Column>
-                        {film.releaseDate && (
-                          <Property
-                            label="Release date:"
-                            content={new Date(film.releaseDate).toLocaleDateString()}
-                          />
-                        )}
-                        {film.director && <Property
-                          label="Director:"
-                          content={film.director}
-                        />}
-                        {film.characterConnection && film.characterConnection.characters && (
-                          <Property
-                            label="Characters:"
-                            content={film.characterConnection.characters
-                              .filter(Boolean)
-                              .map((ch) => ch.name)
-                              .join(', ')}
-                          />
-                        )}
-                        {film.planetConnection && film.planetConnection.planets && (
-                          <Property
-                            label="Planets:"
-                            content={film.planetConnection.planets
-                              .filter(Boolean)
-                              .map((p) => p.name)
-                              .join(', ')}
-                          />
-                        )}
-                      </Column>
+                  <Row>
+                    <Column>
+                      {film.releaseDate && (
+                        <Property
+                          label="Release date:"
+                          content={new Date(film.releaseDate).toLocaleDateString()}
+                        />
+                      )}
+                      {film.director && <Property
+                        label="Director:"
+                        content={film.director}
+                      />}
+                      {film.characterConnection && film.characterConnection.characters && (
+                        <Property
+                          label="Characters:"
+                          content={film.characterConnection.characters
+                            .filter(Boolean)
+                            .map((ch) => ch.name)
+                            .join(', ')}
+                        />
+                      )}
+                      {film.planetConnection && film.planetConnection.planets && (
+                        <Property
+                          label="Planets:"
+                          content={film.planetConnection.planets
+                            .filter(Boolean)
+                            .map((p) => p.name)
+                            .join(', ')}
+                        />
+                      )}
+                    </Column>
 
-                      <Column>
-                        {film.openingCrawl && <Property
-                          label="Opening crawl:"
-                          content={film.openingCrawl}
-                        />}
-                      </Column>
-                    </Row>
-                  </div>
-                );
-              }}
-            </FilmDetailData>
-          );
-        }
-      }
+                    <Column>
+                      {film.openingCrawl && <Property
+                        label="Opening crawl:"
+                        content={film.openingCrawl}
+                      />}
+                    </Column>
+                  </Row>
+                </div>
+              );
+            }}
+          </FilmDetailData>
+        );
+      }}
     </UserFavoritesData>
   );
 };
