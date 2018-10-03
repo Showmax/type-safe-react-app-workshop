@@ -1,12 +1,9 @@
 // @flow
 import React from 'react';
-import { Link } from 'react-router-dom';
-
 import FilmsList from './FilmsList';
 import FilmsListItem from './FilmsListItem';
-import FilmPoster from './FilmPoster';
-import FavoritesToggle from './FavoritesToggle';
 import HomePageData from './HomePageData';
+import Film from './Film';
 
 
 class Home extends React.Component<{}> {
@@ -21,28 +18,16 @@ class Home extends React.Component<{}> {
 
           return (
             <FilmsList>
-              {films.map(({ id, title, episodeID, poster }) => {
-                const posterTitle = (episodeID != null) ? `Episode ${episodeID}` : 'Unknown episode';
-                const posterSubtitle = title || '';
-                const posterImageUrl = poster && `http://localhost:8080${poster}`;
-
-                return (
-                  <FilmsListItem key={id}>
-                    <Link to={`/film/${id}`} style={{ textDecoration: 'none' }}>
-                      <FilmPoster
-                        title={posterTitle}
-                        subtitle={posterSubtitle}
-                        imageUrl={posterImageUrl}
-                      />
-                    </Link>
-                    <FavoritesToggle
-                      toggleStatus={favoriteFilmIds.includes(id) ? 'active' : 'inactive'}
-                      onActivate={() => { addToFavorites(id); }}
-                      onDeactivate={() => { removeFromFavorites(id); }}
-                    />
-                  </FilmsListItem>
-                );
-              })}
+              {films.map((film) => (
+                <FilmsListItem key={film.id}>
+                  <Film
+                    film={film}
+                    isFavorite={favoriteFilmIds.includes(film.id)}
+                    onAddToFavorites={addToFavorites}
+                    onRemoveFromFavorites={removeFromFavorites}
+                  />
+                </FilmsListItem>
+              ))}
             </FilmsList>
           );
         }}

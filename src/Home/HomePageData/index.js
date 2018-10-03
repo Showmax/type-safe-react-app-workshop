@@ -19,6 +19,7 @@ import type {
 RemoveFromFavoritesMutation as RemoveFromFavoritesMutationResult,
 RemoveFromFavoritesMutationVariables,
 } from './__generated__/RemoveFromFavoritesMutation';
+import { FilmFragment } from '../Film'
 
 
 const query = gql`
@@ -26,9 +27,7 @@ const query = gql`
     allFilms {
       films {
         id
-        title
-        episodeID
-        poster
+        ...FilmFragment
       }
     }
     favorites(userId: $userId) {
@@ -36,6 +35,7 @@ const query = gql`
       films
     }
   }
+  ${FilmFragment}
 `;
 
 const addToFavoritesMutation = gql`
