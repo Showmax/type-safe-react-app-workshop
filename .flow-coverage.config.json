@@ -1,5 +1,5 @@
 {
   "globIncludePatterns": ["src/**/*.js"],
-  "reportTypes": ["html"],
+  "reportTypes": ["text", "html"],
   "concurrentFiles": 4
 }
