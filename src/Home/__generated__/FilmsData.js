@@ -36,8 +36,17 @@ export type FilmsData_allFilms = {|
   +films: ?$ReadOnlyArray<?FilmsData_allFilms_films>
 |};
 
+export type FilmsData_favorites = {|
+  +films: $ReadOnlyArray<string>
+|};
+
 export type FilmsData = {|
-  +allFilms: ?FilmsData_allFilms
+  +allFilms: ?FilmsData_allFilms,
+  +favorites: ?FilmsData_favorites,
+|};
+
+export type FilmsDataVariables = {|
+  +userId: string
 |};
 
 /* @flow */
