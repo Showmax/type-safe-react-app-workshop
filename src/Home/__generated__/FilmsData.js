@@ -14,13 +14,13 @@ export type FilmsData_allFilms_films = {|
    */
   +id: string,
   /**
-   * The title of this film.
-   */
-  +title: ?string,
-  /**
    * The episode number of this film.
    */
   +episodeID: ?number,
+  /**
+   * The title of this film.
+   */
+  +title: ?string,
   +poster: ?string,
 |};
 

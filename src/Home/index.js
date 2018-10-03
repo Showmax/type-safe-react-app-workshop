@@ -2,14 +2,12 @@
 import React from 'react';
 import { Query, Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
-import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import uuid from 'uuid';
 
+import Film, { FilmFragment } from './Film';
 import FilmsList from './FilmsList';
 import FilmsListItem from './FilmsListItem';
-import FilmPoster from './FilmPoster';
-import FavoritesToggle from './FavoritesToggle';
 import type { FilmsData as FilmsDataType, FilmsDataVariables } from './__generated__/FilmsData';
 import type {
   AddToFavoritesMutation as AddToFavoritesMutationResult,
@@ -25,9 +23,7 @@ const query = gql`
     allFilms {
       films {
         id
-        title
-        episodeID
-        poster
+        ...FilmFragment
       }
     }
     favorites(userId: $userId) {
@@ -35,6 +31,7 @@ const query = gql`
       films
     }
   }
+  ${FilmFragment}
 `;
 
 const addToFavoritesMutation = gql`
@@ -104,27 +101,19 @@ class Home extends React.Component<{}, State> {
 
                   return (
                     <FilmsList>
-                      {films.map(({ id, title, episodeID, poster }) => {
-                        const posterTitle = (episodeID != null) ? `Episode ${episodeID}` : 'Unknown episode';
-                        const posterSubtitle = title || '';
-                        const posterImageUrl = poster && `http://localhost:8080${poster}`;
+                      {films.map((film) => {
+                        const filmId = film.id;
 
                         return (
-                          <FilmsListItem key={id}>
-                            <Link to={`/film/${id}`} style={{ textDecoration: 'none' }}>
-                              <FilmPoster
-                                title={posterTitle}
-                                subtitle={posterSubtitle}
-                                imageUrl={posterImageUrl}
-                              />
-                            </Link>
-                            <FavoritesToggle
-                              toggleStatus={favoriteFilmIds.includes(id) ? 'active' : 'inactive'}
-                              onActivate={() => {
-                                addToFavorites({ variables: { userId, filmId: id } });
+                          <FilmsListItem key={filmId}>
+                            <Film
+                              film={film}
+                              isFavorite={favoriteFilmIds.includes(filmId)}
+                              onAddToFavorites={() => {
+                                addToFavorites({ variables: { userId, filmId } });
                               }}
-                              onDeactivate={() => {
-                                removeFromFavorites({ variables: { userId, filmId: id } });
+                              onRemoveFromFavorites={() => {
+                                removeFromFavorites({ variables: { userId, filmId } });
                               }}
                             />
                           </FilmsListItem>
