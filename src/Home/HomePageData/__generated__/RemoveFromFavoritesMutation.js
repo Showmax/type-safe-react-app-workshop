@@ -9,7 +9,8 @@
 // ====================================================
 
 export type RemoveFromFavoritesMutation_removeFromFavorites = {|
-  +id: string
+  +id: string,
+  +films: $ReadOnlyArray<string>,
 |};
 
 export type RemoveFromFavoritesMutation = {|

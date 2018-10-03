@@ -9,7 +9,8 @@
 // ====================================================
 
 export type AddToFavoritesMutation_addToFavorites = {|
-  +id: string
+  +id: string,
+  +films: $ReadOnlyArray<string>,
 |};
 
 export type AddToFavoritesMutation = {|

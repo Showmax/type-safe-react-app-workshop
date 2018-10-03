@@ -37,7 +37,8 @@ export type FilmsData_allFilms = {|
 |};
 
 export type FilmsData_favorites = {|
-  +films: $ReadOnlyArray<string>
+  +id: string,
+  +films: $ReadOnlyArray<string>,
 |};
 
 export type FilmsData = {|
