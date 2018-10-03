@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import FilmsList from './FilmsList';
 import FilmsListItem from './FilmsListItem';
 import FilmPoster from './FilmPoster';
+import type { FilmsData as FilmsDataType } from './__generated__/FilmsData';
 
 const query = gql`
   query FilmsData {
@@ -20,17 +21,6 @@ const query = gql`
   }
 `;
 
-type FilmsDataType = {
-  allFilms: ?{
-    films: $ReadOnlyArray<?{
-      id: string,
-      title: ?string,
-      episodeID: ?number,
-      poster: ?string,
-    }>
-  }
-};
-
 class FilmsQuery extends Query<FilmsDataType, {}> {}
 
 const Home = () => (
@@ -38,7 +28,7 @@ const Home = () => (
     {({ loading, error, data }) => {
       if (loading) return <p>Home page is loading...</p>;
       if (error) return <p>Error happened! {error.message}</p>;
-      if (!data || !data.allFilms) return <p>Unexpected query result</p>;
+      if (!data || !data.allFilms || !data.allFilms.films) return <p>Unexpected query result</p>;
 
       const films = data.allFilms.films.filter(Boolean);
 

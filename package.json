@@ -22,7 +22,8 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "flow": "flow status",
-    "flow:coverage": "flow-coverage-report --config .flow-coverage.config.json"
+    "flow:coverage": "flow-coverage-report --config .flow-coverage.config.json",
+    "graphql2flow": "apollo codegen:generate --target=flow --useFlowExactObjects --useFlowReadOnlyTypes"
   },
   "devDependencies": {
     "apollo": "^1.9.2",
