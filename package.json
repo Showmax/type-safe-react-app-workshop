@@ -5,7 +5,7 @@
   "dependencies": {
     "apollo-boost": "^0.1.16",
     "classnames": "^2.2.6",
-    "graphql": "^14.0.2",
+    "graphql": "^0.13.0",
     "graphql-tag": "^2.10.0",
     "js-cookie": "^2.2.0",
     "react": "^16.4.2",
@@ -22,9 +22,11 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "flow": "flow status",
-    "flow:coverage": "flow-coverage-report --config .flow-coverage.config.json"
+    "flow:coverage": "flow-coverage-report --config .flow-coverage.config.json",
+    "graphql2flow": "apollo codegen:generate --target=flow --useFlowExactObjects --useFlowReadOnlyTypes"
   },
   "devDependencies": {
+    "apollo": "^1.9.2",
     "flow-bin": "^0.81.0",
     "flow-coverage-report": "^0.6.0"
   }
