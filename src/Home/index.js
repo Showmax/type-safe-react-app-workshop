@@ -1,45 +1,48 @@
 // @flow
 import React from 'react';
+import PropTypes from 'prop-types';
+import type { ApolloClient } from 'react-apollo';
 
 import Film from './Film';
 import FilmsList from './FilmsList';
 import FilmsListItem from './FilmsListItem';
-import HomePageData from './HomePageData';
+import useHomePageData from './useHomePageData';
 
+type Context = {
+  client: ApolloClient<{}>,
+};
 
-class Home extends React.Component<{}> {
-  render() {
-    return (
-      <HomePageData>
-        {(result) => {
-          if (result.loading) return <p>Home page is loading...</p>;
-          if (result.failure) return <p>Error happened! {result.error}</p>;
+function Home(_: {}, context: Context) {
+  const result = useHomePageData(context.client);
 
-          const { films, favoriteFilmIds, addToFavorites, removeFromFavorites } = result;
+  if (result.loading) return <p>Home page is loading...</p>;
+  if (result.failure) return <p>Error happened! {result.error}</p>;
 
-          return (
-            <FilmsList>
-              {films.map((film) => {
-                const filmId = film.id;
+  const { films, favoriteFilmIds } = result;
 
-                return (
-                  <FilmsListItem key={filmId}>
-                    <Film
-                      film={film}
-                      isFavorite={favoriteFilmIds.includes(filmId)}
-                      onAddToFavorites={addToFavorites}
-                      onRemoveFromFavorites={removeFromFavorites}
-                    />
-                  </FilmsListItem>
-                );
-              })}
-            </FilmsList>
-          );
-        }}
-      </HomePageData>
-    );
-  }
+  return (
+    <FilmsList>
+      {films.map((film) => {
+        const filmId = film.id;
+
+        return (
+          <FilmsListItem key={filmId}>
+            <Film
+              film={film}
+              isFavorite={favoriteFilmIds.includes(filmId)}
+              onAddToFavorites={() => alert('not implemented')}
+              onRemoveFromFavorites={() => alert('not implemented')}
+            />
+          </FilmsListItem>
+        );
+      })}
+    </FilmsList>
+  );
 }
+
+Home.contextTypes = {
+  client: PropTypes.object,
+};
 
 
 export default Home;
